@@ -2,10 +2,11 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
-import { getActivitiesReducer } from './reducers/activityReducers'
+import { getActivitiesReducer, deleteActivityReducer } from './reducers/activityReducers'
 
 const reducer = combineReducers({
     getActivities: getActivitiesReducer,
+    deleteActivity: deleteActivityReducer
 })
 
 const initialState = {

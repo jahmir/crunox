@@ -4,7 +4,7 @@ import { Button, Col, Row, Table } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { LinkContainer } from 'react-router-bootstrap'
-import { getActivitiesAction } from '../actions/activityActions'
+import { getActivitiesAction, deleteActivityAction } from '../actions/activityActions'
 import FormContainer from '../components/FormContainer'
 
 const ActivityListScreen = () => {
@@ -14,12 +14,15 @@ const ActivityListScreen = () => {
     const getActivities = useSelector(state => state.getActivities)
     const { loading, activities, error } = getActivities
 
+    const deleteActivity = useSelector(state => state.deleteActivity)
+    const { success } = deleteActivity
+
     useEffect(() => {
         dispatch(getActivitiesAction())
-    }, [])
+    }, [success])
 
-    const deleteHandler = () => {
-
+    const deleteHandler = (id) => {
+        dispatch(deleteActivityAction(id))
     }
 
     return (
