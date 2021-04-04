@@ -72,7 +72,7 @@ export const addActivityReducer = (state = {}, action) => {
     }
 }
 
-export const deleteActivityReducer = (state = {}, action) => {
+export const deleteActivityReducer = (state = { activity: {} }, action) => {
     switch (action.type) {
         case DELETE_ACTIVITY_REQUEST:
             return {
@@ -83,10 +83,10 @@ export const deleteActivityReducer = (state = {}, action) => {
             return {
                 ...state,
                 loading: false,
+                activity: action.payload
             }
         case DELETE_ACTIVITY_FAIL:
             return {
-                ...state,
                 loading: false,
                 error: action.payload,
             }

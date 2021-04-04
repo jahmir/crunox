@@ -15,11 +15,11 @@ const ActivityListScreen = ({ history }) => {
     const { activities, loading } = getActivities
 
     const deleteActivity = useSelector(state => state.deleteActivity)
-    const { loading: del } = deleteActivity
+    const { loading: del, activity } = deleteActivity
 
     useEffect(() => {
         dispatch(getActivitiesAction())
-    }, [dispatch])
+    }, [dispatch, activity])
 
     const deleteHandler = (id) => {
         dispatch(deleteActivityAction(id))

@@ -82,9 +82,9 @@ export const createActivityAction = (activityData) => async (dispatch) => {
 
 export const deleteActivityAction = (id) => async (dispatch) => {
     try {
-        // dispatch({
-        //     type: DELETE_ACTIVITY_REQUEST
-        // })
+        dispatch({
+            type: DELETE_ACTIVITY_REQUEST
+        })
 
 
         const { data } = await axios.delete(
