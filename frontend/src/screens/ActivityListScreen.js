@@ -19,10 +19,11 @@ const ActivityListScreen = ({ history }) => {
 
     useEffect(() => {
         dispatch(getActivitiesAction())
-    }, [dispatch, activity])
+    }, [dispatch])
 
-    const deleteHandler = (id) => {
+    const deleteHandler = (id, elid) => {
         dispatch(deleteActivityAction(id))
+        document.getElementById(elid).remove();
     }
 
     return (
@@ -49,12 +50,12 @@ const ActivityListScreen = ({ history }) => {
                     </thead>
                     <tbody>
                         {activities && activities.map((activity) => (
-                            <tr key={activity._id}>
+                            <tr id={activities.indexOf(activity)}>
                                 <td>*</td>
                                 <td>{activity.name}</td>
                                 <td>{activity.description}</td>
                                 <td>{moment(activity.createdAt).format('MMMM DD, YYYY')}</td>
-                                <td className='d-flex justify-content-between border-0'><span><i className='fas fa-trash-alt' onClick={() => deleteHandler(activity._id)}></i></span>
+                                <td className='d-flex justify-content-between border-0'><span><i className='fas fa-trash-alt' onClick={() => deleteHandler(activity._id, activities.indexOf(activity))}></i></span>
                                     <LinkContainer to={`edit/${activity._id}`}>
                                         <span><i className='fas fa-edit'></i></span>
                                     </LinkContainer>

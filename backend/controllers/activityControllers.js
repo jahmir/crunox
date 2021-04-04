@@ -47,9 +47,8 @@ const updateActivity = asyncHandler(async (req, res) => {
     try {
 
         const updatedActivity = await activity.save()
-        if (updatedActivity) {
-            res.status(201).json(updatedActivity)
-        }
+        res.status(201).json(updatedActivity)
+
 
     } catch (error) {
 

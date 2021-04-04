@@ -95,19 +95,18 @@ export const deleteActivityReducer = (state = { activity: {} }, action) => {
     }
 }
 
-export const editActivityReducer = (state = {}, action) => {
+export const editActivityReducer = (state = { activity: {} }, action) => {
     switch (action.type) {
         case EDIT_ACTIVITY_REQUEST:
             return {
                 ...state,
                 loading: true,
-                success: false,
             }
         case EDIT_ACTIVITY_SUCCESS:
             return {
                 ...state,
                 loading: false,
-                success: true,
+                activity: action.payload
             }
         case EDIT_ACTIVITY_FAIL:
             return {
