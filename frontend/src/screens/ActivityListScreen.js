@@ -14,8 +14,8 @@ const ActivityListScreen = ({ history }) => {
     const getActivities = useSelector(state => state.getActivities)
     const { activities, loading } = getActivities
 
-    const deleteActivity = useSelector(state => state.deleteActivity)
-    const { loading: del, activity } = deleteActivity
+    // const deleteActivity = useSelector(state => state.deleteActivity)
+    // const { } = deleteActivity
 
     useEffect(() => {
         dispatch(getActivitiesAction())
@@ -50,7 +50,7 @@ const ActivityListScreen = ({ history }) => {
                     </thead>
                     <tbody>
                         {activities && activities.map((activity) => (
-                            <tr id={activities.indexOf(activity)}>
+                            <tr id={activities.indexOf(activity)} key={activities.indexOf(activity)}>
                                 <td>*</td>
                                 <td>{activity.name}</td>
                                 <td>{activity.description}</td>
@@ -64,8 +64,9 @@ const ActivityListScreen = ({ history }) => {
                         ))}
                     </tbody>
                 </Table>
-            )}
-        </FormContainer>
+            )
+            }
+        </FormContainer >
     )
 }
 
