@@ -18,7 +18,8 @@ const EditActivityScreen = ({ match, history }) => {
         dispatch(getActivityAction(match.params.id))
         setName(activity.name)
         setDescription(activity.description)
-    }, [dispatch, activity.description, activity.name, match.params.id])
+    }, [dispatch, match.params.id, activity.name, activity.description])
+
 
     const submitHandler = (e) => {
         const activity = {
