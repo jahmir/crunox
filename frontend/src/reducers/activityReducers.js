@@ -24,7 +24,7 @@ export const getActivitiesReducer = (state = {}, action) => {
     }
 }
 
-export const getActivityReducer = (state = {}, action) => {
+export const getActivityReducer = (state = { activity: {} }, action) => {
     switch (action.type) {
         case GET_ACTIVITY_REQUEST:
             return {

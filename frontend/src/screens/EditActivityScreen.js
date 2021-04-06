@@ -14,11 +14,11 @@ const EditActivityScreen = ({ match, history }) => {
     const getActivity = useSelector(state => state.getActivity)
     const { loading, activity } = getActivity
 
-    // useEffect(() => {
-    //     if (!activity) {
-    //         dispatch(getActivityAction(match.params.id))
-    //     }
-    // }, [dispatch, activity, match])
+    useEffect(() => {
+        dispatch(getActivityAction(match.params.id))
+        setName(activity.name)
+        setDescription(activity.description)
+    }, [dispatch, activity.description, activity.name, match.params.id])
 
     const submitHandler = (e) => {
         const activity = {
@@ -33,33 +33,35 @@ const EditActivityScreen = ({ match, history }) => {
     }
 
     return (
-        <FormContainer>
-            <Form onSubmit={submitHandler}>
-                <h1 className='mb-3'>EDIT Activity</h1>
-                {loading && <h4>Please wait....</h4>}
-                <Form.Group controlId='name'>
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control
-                        type='text'
-                        placeholder='name'
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                    ></Form.Control>
-                </Form.Group>
 
-                <Form.Group controlId='description'>
-                    <Form.Label>Description</Form.Label>
-                    <Form.Control
-                        type='text'
-                        placeholder='description'
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                    ></Form.Control>
-                </Form.Group>
-                <Button type='submit' variant='primary'>
-                    Save
+        <FormContainer>
+            {loading ? <h4>Please wait...</h4> : (
+                <Form onSubmit={submitHandler}>
+                    <h1 className='mb-3'>EDIT Activity</h1>
+                    <Form.Group controlId='name'>
+                        <Form.Label>Name</Form.Label>
+                        <Form.Control
+                            type='text'
+                            placeholder='name'
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                        ></Form.Control>
+                    </Form.Group>
+
+                    <Form.Group controlId='description'>
+                        <Form.Label>Description</Form.Label>
+                        <Form.Control
+                            type='text'
+                            placeholder='description'
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                        ></Form.Control>
+                    </Form.Group>
+                    <Button type='submit' variant='primary'>
+                        Save
         </Button>
-            </Form>
+                </Form>
+            )}
         </FormContainer>
     )
 }

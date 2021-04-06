@@ -23,7 +23,8 @@ const ActivityListScreen = ({ history }) => {
 
     const deleteHandler = (id, elid) => {
         dispatch(deleteActivityAction(id))
-        document.getElementById(elid).remove();
+        document.querySelector(`tr[id='${elid}']`).remove()
+        //document.getElementById(elid).remove();
     }
 
     return (
