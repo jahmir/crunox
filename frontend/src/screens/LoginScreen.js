@@ -5,6 +5,7 @@ import Message from '../components/Message'
 import { loginAction } from '../actions/userActions'
 import { Link } from 'react-router-dom'
 import FormContainer from '../components/FormContainer'
+import LoginContainer from '../components/LoginContainer'
 
 const LoginScreen = ({ history }) => {
 
@@ -29,7 +30,7 @@ const LoginScreen = ({ history }) => {
     }
 
     return (
-        <FormContainer>
+        <LoginContainer>
             <Form onSubmit={submitHandler}>
                 <h1 className='mb-3'>Login</h1>
                 {error && <Message variant='danger'>{error}</Message>}
@@ -53,16 +54,20 @@ const LoginScreen = ({ history }) => {
                     ></Form.Control>
                 </Form.Group>
 
-                <Button type='submit' variant='primary'>
+                <Button className='btn btn-primary btn-sm btn-block py-3' type='submit' variant='primary'>
                     Sign In
-        </Button>
+                </Button>
+
+                {/* <div className="g-signin2" data-onsuccess="onSignIn"></div> */}
+
+
             </Form>
             <Row className='py-3'>
                 <Col>
                     New User? <Link to={'/register'}>Register Here</Link>
                 </Col>
             </Row>
-        </FormContainer>
+        </LoginContainer>
     )
 }
 
