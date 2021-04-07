@@ -1,10 +1,12 @@
 import express from 'express'
 import { getActivities, createActivity, updateActivity, deleteActivity, getActivity } from '../controllers/activityControllers.js'
+import { protect } from '../middlewares/authMiddleware.js'
+
 const router = express.Router()
 
 
-router.route('/').get(getActivities).post(createActivity)
-router.route('/:id').put(updateActivity).delete(deleteActivity).get(getActivity)
+router.route('/').get(protect, getActivities).post(protect, createActivity)
+router.route('/:id').put(protect, updateActivity).delete(protect, deleteActivity).get(protect, getActivity)
 
 
 export default router

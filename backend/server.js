@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import { errorHandler } from './middlewares/errorMiddleware.js'
 import connectDB from './config/db.js'
 import activityRoutes from './routes/activityRoutes.js'
+import userRoutes from './routes/userRoutes.js'
 
 dotenv.config()
 
@@ -18,6 +19,7 @@ app.use(express.json())
 
 // mount routes
 app.use('/api/activities', activityRoutes)
+app.use('/api/users', userRoutes)
 
 app.use(errorHandler)
 

@@ -14,11 +14,15 @@ const ActivityListScreen = ({ history }) => {
     const getActivities = useSelector(state => state.getActivities)
     const { activities, loading } = getActivities
 
-    // const deleteActivity = useSelector(state => state.deleteActivity)
-    // const { } = deleteActivity
+    const login = useSelector((state) => state.login)
+    const { ld, userInfo, error } = login
 
     useEffect(() => {
-        dispatch(getActivitiesAction())
+        if (!userInfo) {
+            history.push('/')
+        } else {
+            dispatch(getActivitiesAction())
+        }
     }, [dispatch])
 
     const deleteHandler = (id, elid) => {
@@ -32,13 +36,12 @@ const ActivityListScreen = ({ history }) => {
         <FormContainer>
             <Row>
                 <Col className='d-flex '>
-
                     <LinkContainer to='/add'>
                         <Button className='ml-auto mb-3 btn-sm'>Add Activity</Button>
                     </LinkContainer>
                 </Col>
             </Row>
-            {loading ? <h4>Please wait...</h4> : (
+            {loading || ld ? <h4>Please wait...</h4> : (
                 <Table striped bordered hover>
                     <thead>
                         <tr>

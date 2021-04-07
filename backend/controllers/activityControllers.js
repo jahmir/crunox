@@ -4,7 +4,7 @@ import asyncHandler from 'express-async-handler'
 
 //get all activities controller
 const getActivities = asyncHandler(async (req, res) => {
-    const activities = await Activity.find()
+    const activities = await Activity.find({ user: req.user._id })
     res.status(200).json(activities)
 })
 
@@ -20,7 +20,8 @@ const createActivity = asyncHandler(async (req, res) => {
 
     const activity = new Activity({
         name: req.body.name,
-        description: req.body.description
+        description: req.body.description,
+        user: req.user._id
     })
 
     try {

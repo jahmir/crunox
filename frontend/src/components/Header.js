@@ -1,8 +1,19 @@
 import React from 'react'
 import { Container, Nav, Navbar } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
 import { LinkContainer } from 'react-router-bootstrap'
+import { logout } from '../actions/userActions'
 
 const Header = ({ history }) => {
+
+    const dispatch = useDispatch()
+
+    const login = useSelector((state) => state.login)
+    const { loading, userInfo, error } = login
+
+    const logoutHandler = () => {
+        dispatch(logout())
+    }
 
     return (
         <div>
@@ -15,9 +26,15 @@ const Header = ({ history }) => {
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ml-auto">
 
-                            <LinkContainer to='/activities' exact={true}>
-                                <Nav.Link ><i className='fas fa-tasks'></i>Activities</Nav.Link>
-                            </LinkContainer>
+                            {userInfo &&
+                                <>
+                                    <LinkContainer to='/activities' exact={true}>
+                                        <Nav.Link ><i className='fas fa-tasks'></i>Activities</Nav.Link>
+                                    </LinkContainer>
+                                    <Nav.Link onClick={logoutHandler}><i className='fas fa-sign-out-alt'></i>Logout</Nav.Link>
+                                </>
+
+                            }
 
                         </Nav>
                     </Navbar.Collapse>
