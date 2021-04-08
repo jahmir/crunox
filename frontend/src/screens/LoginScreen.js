@@ -10,7 +10,6 @@ import axios from 'axios'
 
 const LoginScreen = ({ history }) => {
 
-    const [url, setUrl] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -65,9 +64,9 @@ const LoginScreen = ({ history }) => {
                     Sign In
                 </Button>
 
-                <a href={url} class="google btn">
+                {/* <a href="" class="google btn">
                     <i className="fa fa-google fa-fw"></i> Login with Google
-                </a>
+                </a> */}
 
 
             </Form>
