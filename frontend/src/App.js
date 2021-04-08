@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './App.css';
+import Footer from './components/Footer';
 import Header from './components/Header';
 import ActivityListScreen from './screens/ActivityListScreen';
 import AddActivityScreen from './screens/AddActivityScreen';
@@ -17,6 +18,7 @@ function App() {
         <Route path='/activities' component={ActivityListScreen} />
         <Route path='/add' component={AddActivityScreen} />
         <Route path='/edit/:id' component={EditActivityScreen} />
+        <Footer></Footer>
       </div>
     </Router>
   );

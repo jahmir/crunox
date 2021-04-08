@@ -24,9 +24,6 @@ const LoginScreen = ({ history }) => {
         if (userInfo) {
             history.push('/activities')
         }
-        const { data } = await axios.get('/api/google')
-        setUrl(data)
-        //console.log(data);
 
     }, [history, userInfo])
 
@@ -34,6 +31,11 @@ const LoginScreen = ({ history }) => {
         e.preventDefault()
         dispatch(loginAction(email, password))
     }
+
+    // const queryString = window.location.search;
+    // const urlParams = new URLSearchParams(queryString);
+    // const code = urlParams.get('code')
+    // console.log(code);
 
     return (
         <LoginContainer>

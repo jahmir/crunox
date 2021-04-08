@@ -5,8 +5,6 @@ import { errorHandler } from './middlewares/errorMiddleware.js'
 import connectDB from './config/db.js'
 import activityRoutes from './routes/activityRoutes.js'
 import userRoutes from './routes/userRoutes.js'
-import googleRoutes from './routes/googleRoutes.js'
-import expressAsyncHandler from 'express-async-handler'
 
 dotenv.config()
 
@@ -21,7 +19,6 @@ app.use(express.json())
 // mount routes
 app.use('/api/activities', activityRoutes)
 app.use('/api/users', userRoutes)
-app.use('/api/google', googleRoutes)
 
 const __dirname = path.resolve()
 
