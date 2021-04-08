@@ -6,9 +6,11 @@ import { loginAction } from '../actions/userActions'
 import { Link } from 'react-router-dom'
 import FormContainer from '../components/FormContainer'
 import LoginContainer from '../components/LoginContainer'
+import axios from 'axios'
 
 const LoginScreen = ({ history }) => {
 
+    const [url, setUrl] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -18,10 +20,14 @@ const LoginScreen = ({ history }) => {
     const { loading, userInfo, error } = login
 
 
-    useEffect(() => {
+    useEffect(async () => {
         if (userInfo) {
             history.push('/activities')
         }
+        const { data } = await axios.get('/api/google')
+        setUrl(data)
+        //console.log(data);
+
     }, [history, userInfo])
 
     const submitHandler = (e) => {
@@ -35,7 +41,7 @@ const LoginScreen = ({ history }) => {
                 <h1 className='mb-3'>Login</h1>
                 {error && <Message variant='danger'>{error}</Message>}
                 <Form.Group controlId='email'>
-                    <Form.Label>Email Address</Form.Label>
+                    {/* <Form.Label>Email Address</Form.Label> */}
                     <Form.Control
                         type='email'
                         placeholder='Enter email'
@@ -45,7 +51,6 @@ const LoginScreen = ({ history }) => {
                 </Form.Group>
 
                 <Form.Group controlId='password'>
-                    <Form.Label>Password</Form.Label>
                     <Form.Control
                         type='password'
                         placeholder='Enter password'
@@ -58,7 +63,9 @@ const LoginScreen = ({ history }) => {
                     Sign In
                 </Button>
 
-                {/* <div className="g-signin2" data-onsuccess="onSignIn"></div> */}
+                <a href={url} class="google btn">
+                    <i className="fa fa-google fa-fw"></i> Login with Google
+                </a>
 
 
             </Form>
