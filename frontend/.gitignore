@@ -11,7 +11,7 @@
 # production
 /frontend/build
 
-uploads/*
+!/uploads/.gitkeep
 
 # misc
 .DS_Store
