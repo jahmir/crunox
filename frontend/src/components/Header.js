@@ -12,8 +12,12 @@ const Header = ({ history }) => {
     const { userInfo } = login
 
     const logoutHandler = () => {
-        window.signOut()
-        dispatch(logout())
+        try {
+            window.signOut()
+            dispatch(logout())
+        } catch (error) {
+            dispatch(logout())
+        }
     }
 
     return (
