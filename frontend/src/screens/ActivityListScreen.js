@@ -15,7 +15,7 @@ const ActivityListScreen = ({ history }) => {
     const { activities, loading } = getActivities
 
     const login = useSelector((state) => state.login)
-    const { ld, userInfo, error } = login
+    const { ld, userInfo } = login
 
     useEffect(() => {
         if (!userInfo) {
@@ -23,7 +23,7 @@ const ActivityListScreen = ({ history }) => {
         } else {
             dispatch(getActivitiesAction())
         }
-    }, [dispatch])
+    }, [dispatch, history, userInfo])
 
     const deleteHandler = (id, elid) => {
         dispatch(deleteActivityAction(id))
@@ -37,7 +37,7 @@ const ActivityListScreen = ({ history }) => {
             <Row>
                 <Col className='d-flex '>
                     <LinkContainer to='/add'>
-                        <Button className='ml-auto mb-3 btn-sm'>Add Activity</Button>
+                        <Button className='ml-auto mb-3 btn-sm'><i className='fas fa-plus'></i> Activity</Button>
                     </LinkContainer>
                 </Col>
             </Row>

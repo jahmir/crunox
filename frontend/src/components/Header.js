@@ -9,9 +9,10 @@ const Header = ({ history }) => {
     const dispatch = useDispatch()
 
     const login = useSelector((state) => state.login)
-    const { loading, userInfo, error } = login
+    const { userInfo } = login
 
     const logoutHandler = () => {
+        window.signOut()
         dispatch(logout())
     }
 
@@ -30,6 +31,10 @@ const Header = ({ history }) => {
                                 <>
                                     <LinkContainer to='/activities' exact={true}>
                                         <Nav.Link ><i className='fas fa-tasks'></i>Activities</Nav.Link>
+                                    </LinkContainer>
+
+                                    <LinkContainer to='/gallery' exact={true}>
+                                        <Nav.Link ><i className='fas fa-tasks'></i>Gallery</Nav.Link>
                                     </LinkContainer>
                                     <Nav.Link onClick={logoutHandler}><i className='fas fa-sign-out-alt'></i>Logout</Nav.Link>
                                 </>

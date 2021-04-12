@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="google-signin-client_id" content="739310312209-jv2e6cgpa5suh3g3gfpe0qtgviguhoqr.apps.googleusercontent.com">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
@@ -41,5 +42,40 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
     <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      async function onSignIn(googleUser) {
+          var profile = googleUser.getBasicProfile();
+          //console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+          // console.log('Name: ' + profile.getName());
+          // console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+          // var id_token = googleUser.getAuthResponse().id_token;
+          // console.log(id_token);
+
+          const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        const {data} = await axios.post(
+            '/api/users/glogin',
+            {
+              name: profile.getName(),
+              email: profile.getEmail()
+            },
+            config
+        )
+       
+          localStorage.setItem('userInfo', JSON.stringify(data))
+        }
+      </script>
+
+    <script>
+      function signOut() {
+          var auth2 = gapi.auth2.getAuthInstance();
+          auth2.signOut()
+      }
+      </script>
   </body>
 </html>

@@ -4,9 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import { loginAction } from '../actions/userActions'
 import { Link } from 'react-router-dom'
-import FormContainer from '../components/FormContainer'
 import LoginContainer from '../components/LoginContainer'
-import axios from 'axios'
 
 const LoginScreen = ({ history }) => {
 
@@ -16,14 +14,13 @@ const LoginScreen = ({ history }) => {
     const dispatch = useDispatch()
 
     const login = useSelector((state) => state.login)
-    const { loading, userInfo, error } = login
+    const { userInfo, error } = login
 
 
-    useEffect(async () => {
+    useEffect(() => {
         if (userInfo) {
             history.push('/activities')
         }
-
     }, [history, userInfo])
 
     const submitHandler = (e) => {
@@ -64,9 +61,7 @@ const LoginScreen = ({ history }) => {
                     Sign In
                 </Button>
 
-                {/* <a href="" class="google btn">
-                    <i className="fa fa-google fa-fw"></i> Login with Google
-                </a> */}
+                <div className="g-signin2" style={{ width: "540px", marginTop: "10px" }} data-onsuccess='onSignIn'></div>
 
 
             </Form>
@@ -75,7 +70,7 @@ const LoginScreen = ({ history }) => {
                     New User? <Link to={'/register'}>Register Here</Link>
                 </Col>
             </Row>
-        </LoginContainer>
+        </LoginContainer >
     )
 }
 

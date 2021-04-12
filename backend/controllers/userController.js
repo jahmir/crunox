@@ -59,4 +59,38 @@ const registerUser = asyncHandler(async (req, res) => {
     }
 })
 
-export { loginUser, registerUser }
+
+const glogin = asyncHandler(async (req, res) => {
+    const { email, name } = req.body
+
+    const userExists = await User.findOne({ email })
+
+    if (userExists) {
+        res.status(201).json({
+            _id: userExists._id,
+            email: userExists.email,
+            name: userExists.name,
+            isAdmin: userExists.isAdmin,
+            token: generateToken(userExists._id)
+        })
+    } else {
+
+        const user = await User.create({
+            email,
+            name,
+            password: '1234'
+        })
+
+        if (user) {
+            res.status(201).json({
+                _id: user._id,
+                email: user.email,
+                name: user.name,
+                isAdmin: user.isAdmin,
+                token: generateToken(user._id)
+            })
+        }
+    }
+})
+
+export { loginUser, registerUser, glogin }

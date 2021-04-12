@@ -43,7 +43,7 @@ const RegisterScreen = ({ history }) => {
                     {/* <label for="password">Password</label> */}
                     <input type="password" placeholder='Enter Password' className="form-control" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
-                <button type="submit" className="btn btn-primary mt-2">Submit</button>
+                <button type="submit" className="btn btn-primary btn-sm btn-block py-3">Submit</button>
             </form>
         </LoginContainer>
     )

@@ -5,6 +5,8 @@ import { errorHandler } from './middlewares/errorMiddleware.js'
 import connectDB from './config/db.js'
 import activityRoutes from './routes/activityRoutes.js'
 import userRoutes from './routes/userRoutes.js'
+import uploadRoutes from './routes/uploadRoutes.js'
+import cookieParser from 'cookie-parser'
 
 dotenv.config()
 
@@ -12,13 +14,13 @@ connectDB()
 
 const app = express()
 
-
-
 app.use(express.json())
+app.use(cookieParser())
 
 // mount routes
 app.use('/api/activities', activityRoutes)
 app.use('/api/users', userRoutes)
+app.use('/api/uploads', uploadRoutes)
 
 const __dirname = path.resolve()
 
@@ -31,6 +33,8 @@ if (process.env.NODE_ENV === 'production') {
         res.send('API is running ...')
     })
 }
+
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
 app.use(errorHandler)
 
