@@ -10,7 +10,7 @@
 
 # production
 /frontend/build
-/uploads
+/uploads/*
 
 # misc
 .DS_Store
