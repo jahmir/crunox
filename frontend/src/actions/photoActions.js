@@ -38,7 +38,7 @@ export const getPhotosAction = () => async (dispatch, getState) => {
     }
 }
 
-export const createPhotoAction = (activityData) => async (dispatch, getState) => {
+export const createPhotoAction = (photoData) => async (dispatch, getState) => {
     try {
         dispatch({
             type: ADD_PHOTO_REQUEST
@@ -58,7 +58,7 @@ export const createPhotoAction = (activityData) => async (dispatch, getState) =>
 
         const { data } = await axios.post(
             '/api/photos',
-            activityData,
+            photoData,
             config
         )
 
