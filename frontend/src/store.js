@@ -4,13 +4,16 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 
 import { getActivitiesReducer, deleteActivityReducer, getActivityReducer } from './reducers/activityReducers'
 import { registerReducer, loginReducer } from './reducers/userReducer'
+import { getPhotosReducer, addPhotoReducer } from './reducers/photoReducers'
 
 const reducer = combineReducers({
     getActivities: getActivitiesReducer,
     deleteActivity: deleteActivityReducer,
     getActivity: getActivityReducer,
     register: registerReducer,
-    login: loginReducer
+    login: loginReducer,
+    getPhotos: getPhotosReducer,
+    addPhoto: addPhotoReducer
 })
 
 const userInfoFromStorage = localStorage.getItem('userInfo')

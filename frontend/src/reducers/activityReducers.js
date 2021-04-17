@@ -1,6 +1,6 @@
 import { GET_ACTIVITIES_REQUEST, GET_ACTIVITIES_SUCCESS, GET_ACTIVITIES_FAIL, ADD_ACTIVITY_REQUEST, ADD_ACTIVITY_SUCCESS, ADD_ACTIVITY_FAIL, DELETE_ACTIVITY_REQUEST, DELETE_ACTIVITY_SUCCESS, DELETE_ACTIVITY_FAIL, GET_ACTIVITY_REQUEST, GET_ACTIVITY_SUCCESS, GET_ACTIVITY_FAIL, EDIT_ACTIVITY_REQUEST, EDIT_ACTIVITY_SUCCESS, EDIT_ACTIVITY_FAIL } from '../constants/activityConstants'
 
-export const getActivitiesReducer = (state = {}, action) => {
+export const getActivitiesReducer = (state = { activities: [] }, action) => {
     switch (action.type) {
         case GET_ACTIVITIES_REQUEST:
             return {

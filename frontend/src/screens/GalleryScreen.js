@@ -1,13 +1,34 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Card, Col, Row, Form, Modal } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
 import { LinkContainer } from 'react-router-bootstrap'
 import FormContainer from '../components/FormContainer'
+import { createPhotoAction, getPhotosAction } from '../actions/photoActions'
 
-const GalleryScreen = () => {
+const GalleryScreen = ({ history }) => {
 
     const [show, setShow] = useState(false);
     const [image, setImage] = useState('')
+
+    const dispatch = useDispatch()
+
+    const getPhotos = useSelector(state => state.getPhotos)
+    const { loading, photos, error } = getPhotos
+
+    const addPhoto = useSelector(state => state.addPhoto)
+    const { photo } = addPhoto
+
+    const login = useSelector((state) => state.login)
+    const { userInfo } = login
+
+    useEffect(() => {
+        if (!userInfo) {
+            history.push('/')
+        } else {
+            dispatch(getPhotosAction())
+        }
+    }, [dispatch, photo])
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -28,12 +49,18 @@ const GalleryScreen = () => {
 
             setImage(data)
         } catch (error) {
+
             console.error(error)
         }
     }
 
     const submitHandler = (e) => {
         e.preventDefault()
+
+        const photoData = {
+            url: image
+        }
+        dispatch(createPhotoAction(photoData))
         setShow(false)
     }
 
@@ -84,11 +111,15 @@ const GalleryScreen = () => {
           </Button>
                     </Modal.Footer>
                 </Modal>
+                <Row>
+                    {photos.map(photo => (
+                        <Card className='my-3 p-3 rounded' style={{ width: "300px" }} key={photos.indexOf(photo)}>
+                            <Card.Img src={photo.url} variant='top' />
+                            <Card.Title>Test</Card.Title>
+                        </Card>
+                    ))}
+                </Row>
 
-                <Card className='my-3 p-3 rounded' style={{ width: "300px" }}>
-                    <Card.Img src='/uploads\image-1617946133738.jpg' variant='top' />
-                    <Card.Title>Test</Card.Title>
-                </Card>
             </FormContainer>
         </>
     )

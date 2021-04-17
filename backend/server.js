@@ -6,6 +6,7 @@ import connectDB from './config/db.js'
 import activityRoutes from './routes/activityRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import uploadRoutes from './routes/uploadRoutes.js'
+import photoRoutes from './routes/photoRoutes.js'
 import cookieParser from 'cookie-parser'
 
 dotenv.config()
@@ -21,6 +22,7 @@ app.use(cookieParser())
 app.use('/api/activities', activityRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/uploads', uploadRoutes)
+app.use('/api/photos', photoRoutes)
 
 const __dirname = path.resolve()
 
