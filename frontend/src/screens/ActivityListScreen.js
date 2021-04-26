@@ -14,6 +14,9 @@ const ActivityListScreen = ({ history }) => {
     const getActivities = useSelector(state => state.getActivities)
     const { activities, loading } = getActivities
 
+    const addActivity = useSelector(state => state.addActivity)
+    const { activity: addA, loading: addL } = addActivity
+
     const login = useSelector((state) => state.login)
     const { ld, userInfo } = login
 
@@ -23,7 +26,7 @@ const ActivityListScreen = ({ history }) => {
         } else {
             dispatch(getActivitiesAction())
         }
-    }, [dispatch, history, userInfo])
+    }, [dispatch, history, userInfo, addL])
 
     const deleteHandler = (id, elid) => {
         dispatch(deleteActivityAction(id))

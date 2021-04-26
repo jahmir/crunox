@@ -26,7 +26,7 @@ export const getActivitiesAction = () => async (dispatch, getState) => {
         dispatch({
             type: GET_ACTIVITIES_SUCCESS,
             payload: data
-        }, console.log('useEffect ran from activities success'))
+        })
 
     } catch (error) {
         dispatch({

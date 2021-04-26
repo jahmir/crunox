@@ -2,12 +2,13 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
-import { getActivitiesReducer, deleteActivityReducer, getActivityReducer } from './reducers/activityReducers'
+import { getActivitiesReducer, deleteActivityReducer, addActivityReducer, getActivityReducer } from './reducers/activityReducers'
 import { registerReducer, loginReducer } from './reducers/userReducer'
 import { getPhotosReducer, addPhotoReducer } from './reducers/photoReducers'
 
 const reducer = combineReducers({
     getActivities: getActivitiesReducer,
+    addActivity: addActivityReducer,
     deleteActivity: deleteActivityReducer,
     getActivity: getActivityReducer,
     register: registerReducer,
