@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const connectDB = async () => {
+export const connectDB = async () => {
     try {
         const conn = await mongoose.connect(process.env.MONGO_URI, {
             useUnifiedTopology: true,
@@ -15,4 +15,17 @@ const connectDB = async () => {
     }
 }
 
-export default connectDB
+export const connectDBProd = async () => {
+    try {
+        const conn = await mongoose.connect(process.env.MONGO_URI_PROD, {
+            useUnifiedTopology: true,
+            useNewUrlParser: true,
+            useCreateIndex: true,
+        })
+
+        console.log(`Prod MongoDB Connected: ${conn.connection.host}`)
+    } catch (error) {
+        console.error(`Error: ${error.message}`)
+        process.exit(1)
+    }
+}
