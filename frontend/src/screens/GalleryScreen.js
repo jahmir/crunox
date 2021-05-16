@@ -116,7 +116,6 @@ const GalleryScreen = ({ history }) => {
                         <Card className='my-3 p-3 rounded' style={{ width: "300px" }} key={photos.indexOf(photo)}>
                             <Card.Img src={photo.url} variant='top' />
                             <Card.Title>Test</Card.Title>
-                            <Card.Title>Test 2</Card.Title>
                         </Card>
                     ))}
                 </Row>
