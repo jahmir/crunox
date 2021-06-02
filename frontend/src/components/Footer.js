@@ -6,7 +6,7 @@ const Footer = () => {
         <footer className='footer mt-auto'>
             <Container>
                 <Row className='mt-auto'>
-                    <Col className='text-center py-3'>Copyright &copy; Activity System by Altair</Col>
+                    <Col className='text-center py-3'>Copyright &copy; Activity System by Altair Footer updated</Col>
                 </Row>
             </Container>
         </footer>
